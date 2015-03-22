@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Semantic GDocs</title>
+    <meta name="description" content="Convert GDoc HTML to Semantic HTML">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <link rel="stylesheet" href="semantic-gdocs.css">
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+                Semantic GDocs
+            </div>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br>
+            <br>
+            <h1 class="header center orange-text">Semantic Google Docs</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Convert exported Google Docs HTML to semantic HTML</h5>
+            </div>
+            <div class="row center">
+                <p>
+                    Google Docs can export a document as HTML. But if you want to import that HTML
+                    somewhere else, you'll have problems. This cleans up the Google Docs export
+                    (and will probably work on similar HTML), and gives you clean, semantic HTML
+                    that you can import into a rich text editor.
+                </p>
+                
+                <p>
+                    In Google Docs, go to File > Download As > Webpage, open the HTML in a text editor, 
+                    and copy the whole thing. Make sure to get everything, especailly the head tag! 
+                    Then paste it all in the <strong>Import</strong> box, and copy out clean HTML 
+                    from the <strong>Semantic</strong> box. That's all there is to it! Note that you
+                    may see some funny characters - but it should render fine.
+                </p>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="section">
+
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m6">
+                    <h4>Input</h4>
+                    
+                    <textarea id="input"></textarea>
+                </div>
+
+                <div class="col s12 m6">
+                    <h4>Semantic Output</h4>
+                    
+                    <textarea id="output"></textarea>
+                </div>
+
+                <div id="input-zone" style="display: none;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="page-footer orange">
+        <div class="footer-copyright">
+            <div class="container">
+                Made by Will Lee-Wagner
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+    <script src="semantic-gdocs.js"></script>
+</body>
+
+</html>
