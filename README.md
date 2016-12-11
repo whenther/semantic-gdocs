@@ -15,9 +15,3 @@ may see some funny characters - but it should render fine.
 
 Check it out online at
 [semantic-gdocs.whentheresawill.net](http://semantic-gdocs.whentheresawill.net)
-
-## License
-
-Copyright © 2015 Will Lee-Wagner
-
-Distributed under the MIT License
