@@ -14,4 +14,4 @@ from the <strong>Semantic</strong> box. That's all there is to it! Note that you
 may see some funny characters - but it should render fine.
 
 Check it out online at
-[semantic-gdocs.whentheresawill.net](http://semantic-gdocs.whentheresawill.net)
+[https://will-wow.github.io/semantic-gdocs/](https://will-wow.github.io/semantic-gdocs/)
