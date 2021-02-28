@@ -1,7 +1,12 @@
 import $ from "jquery";
+import { html_beautify } from "js-beautify";
 
 const STYLE_REGEX = /<style[^>]*>.*<\/style>/g;
 const $BODY = $("body");
+
+const EMPTY_P_REGEX = new RegExp("<p></p>", "g");
+const EMPTY_DIV_REGEX = new RegExp("<div></div>", "g");
+const BR_REGEX = new RegExp("<br/?>", "g");
 
 let inputText: string;
 let $inputZone: JQuery = $("#input-zone");
@@ -83,14 +88,29 @@ const makeElementsSemantic = () => {
   });
 };
 
-const setOutputText = () => {
-  return (
-    $input
-      .html()
-      // remove the spans, since they should all be replaced by semantic tags
-      .replace(/<span[^>]*>/g, "")
-      .replace(/<\/span>/g, "")
-  );
+const getOutputText = (withLineBreaks: boolean): string => {
+  let output = $input
+    .html()
+    // remove the spans, since they should all be replaced by semantic tags
+    .replace(/<span[^>]*>/g, "")
+    .replace(/<\/span>/g, "");
+
+  if (!withLineBreaks) {
+    output = removeLineBreaks(output);
+  }
+
+  return cleanHtmlOutput(output);
+};
+
+const removeLineBreaks = (output: string): string => {
+  return output
+    .replace(EMPTY_P_REGEX, "")
+    .replace(EMPTY_DIV_REGEX, "")
+    .replace(BR_REGEX, "");
+};
+
+const cleanHtmlOutput = (output: string) => {
+  return html_beautify(output);
 };
 
 const cleanUpStyles = () => {
@@ -107,7 +127,10 @@ const reset = () => {
 };
 
 /** Process and clean incoming HTML. */
-export const processInput = (input: string): Promise<string> => {
+export const processInput = (
+  input: string,
+  withLineBreaks: boolean
+): Promise<string> => {
   inputText = input;
 
   if (!inputText) {
@@ -121,7 +144,7 @@ export const processInput = (input: string): Promise<string> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       makeElementsSemantic();
-      const output = setOutputText();
+      const output = getOutputText(withLineBreaks);
       cleanUpStyles();
       reset();
 

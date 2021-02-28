@@ -15,6 +15,10 @@ import {
   Flex,
   Button,
   useToast,
+  ButtonProps,
+  Checkbox,
+  HStack,
+  Tooltip,
 } from "@chakra-ui/react";
 
 import { processInput } from "./lib/semantic-gdocs";
@@ -22,12 +26,13 @@ import { processInput } from "./lib/semantic-gdocs";
 export const Inputs: React.FC = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [removeLineBreaks, setRemoveLineBreaks] = useState(true);
   const outputRef = useRef<HTMLTextAreaElement>(null);
   const toast = useToast();
 
   useEffect(() => {
-    processInput(input).then(setOutput);
-  }, [input]);
+    processInput(input, !removeLineBreaks).then(setOutput);
+  }, [input, removeLineBreaks]);
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     if (event.target.name === "input") {
@@ -35,6 +40,12 @@ export const Inputs: React.FC = () => {
     } else {
       setOutput(event.target.value);
     }
+  };
+
+  const handleRemoveLineBreaks: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    setRemoveLineBreaks(event.target.checked);
   };
 
   const handleCopy = () => {
@@ -52,23 +63,41 @@ export const Inputs: React.FC = () => {
     <>
       <Grid as="section" templateColumns="repeat(2, 1fr)" gap={3}>
         <Box>
-          <InputHeading>Input</InputHeading>
+          <Flex justify="space-between" align="center" pb={2}>
+            <HStack>
+              <InputHeading>Input</InputHeading>
+
+              <Tooltip
+                label="If checked, remove any extra line breaks between paragraphs."
+                hasArrow
+                placement="top-start"
+              >
+                <span tabIndex={0}>
+                  <Checkbox
+                    colorScheme="purple"
+                    isChecked={removeLineBreaks}
+                    onChange={handleRemoveLineBreaks}
+                  >
+                    Remove Line Breaks
+                  </Checkbox>
+                </span>
+              </Tooltip>
+            </HStack>
+
+            <SmallButton disabled={!input} onClick={() => setInput("")}>
+              Clear
+            </SmallButton>
+          </Flex>
 
           <InputTextArea value={input} name="input" onChange={handleChange} />
         </Box>
 
         <Box>
-          <Flex justify="space-between" align="center">
+          <Flex justify="space-between" align="center" pb={2}>
             <InputHeading>Clean Output</InputHeading>
-            <Button
-              disabled={!output}
-              colorScheme="purple"
-              size="xs"
-              name="output"
-              onClick={handleCopy}
-            >
+            <SmallButton disabled={!output} onClick={handleCopy}>
               Copy
-            </Button>
+            </SmallButton>
           </Flex>
 
           <InputTextArea
@@ -83,7 +112,7 @@ export const Inputs: React.FC = () => {
 };
 
 const InputHeading: React.FC<HeadingProps> = (props) => {
-  return <Heading as="h2" size="md" pb={2} {...props}></Heading>;
+  return <Heading as="h2" size="md" {...props}></Heading>;
 };
 
 const InputTextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -99,6 +128,10 @@ const InputTextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     );
   }
 );
+
+const SmallButton: React.FC<ButtonProps> = (props) => {
+  return <Button colorScheme="purple" size="xs" name="output" {...props} />;
+};
 
 const copyElement = (textarea: HTMLTextAreaElement | null) => {
   if (!textarea) return;

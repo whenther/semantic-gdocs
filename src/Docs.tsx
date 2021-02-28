@@ -5,10 +5,11 @@ export const Docs: React.FC = () => {
   return (
     <Box>
       <Heading as="h1" size="xl" pt={4} pb={3}>
-        Semantic Google Docs
+        Google Docs HTML Cleaner
       </Heading>
+
       <Heading as="h5" size="md" pb={3}>
-        Convert exported Google Docs HTML to semantic HTML
+        Convert exported Google Docs HTML to clean, semantic HTML
       </Heading>
 
       <Text pb={3}>
@@ -25,10 +26,10 @@ export const Docs: React.FC = () => {
         especially the head tag! Then paste it all in the
         <Text as="strong"> Import </Text>
         box. The
-        <Text as="strong"> Clean Output </Text> box should now show your cleaned
-        HTML code. Just click the copy button to put it in your clipboard.
-        That's all there is to it! Note that you may see some funny characters -
-        but it should render fine.
+        <Text as="strong"> Clean Output </Text> box should now show your
+        cleaned-up HTML code. Just click the copy button to put it in your
+        clipboard. That's all there is to it! Note that you may see some funny
+        characters - but it should render fine.
       </Text>
     </Box>
   );
