@@ -21,7 +21,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 
-import { processInput } from "./lib/semantic-gdocs";
+import { processInput } from "./lib/html-cleaner";
 
 export const Inputs: React.FC = () => {
   const [input, setInput] = useState("");
@@ -31,7 +31,8 @@ export const Inputs: React.FC = () => {
   const toast = useToast();
 
   useEffect(() => {
-    processInput(input, !removeLineBreaks).then(setOutput);
+    const newOutput = processInput(input, !removeLineBreaks);
+    setOutput(newOutput);
   }, [input, removeLineBreaks]);
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
