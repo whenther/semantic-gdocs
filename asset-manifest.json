@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/static/js/main.28de9b72.chunk.js",
-    "main.js.map": "/static/js/main.28de9b72.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.69c54bfb.js",
-    "runtime-main.js.map": "/static/js/runtime-main.69c54bfb.js.map",
-    "static/js/2.a7b76d91.chunk.js": "/static/js/2.a7b76d91.chunk.js",
-    "static/js/2.a7b76d91.chunk.js.map": "/static/js/2.a7b76d91.chunk.js.map",
-    "static/js/3.3b869dee.chunk.js": "/static/js/3.3b869dee.chunk.js",
-    "static/js/3.3b869dee.chunk.js.map": "/static/js/3.3b869dee.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.a7b76d91.chunk.js.LICENSE.txt": "/static/js/2.a7b76d91.chunk.js.LICENSE.txt"
+    "main.js": "/semantic-gdocs/static/js/main.28de9b72.chunk.js",
+    "main.js.map": "/semantic-gdocs/static/js/main.28de9b72.chunk.js.map",
+    "runtime-main.js": "/semantic-gdocs/static/js/runtime-main.4029523c.js",
+    "runtime-main.js.map": "/semantic-gdocs/static/js/runtime-main.4029523c.js.map",
+    "static/js/2.a7b76d91.chunk.js": "/semantic-gdocs/static/js/2.a7b76d91.chunk.js",
+    "static/js/2.a7b76d91.chunk.js.map": "/semantic-gdocs/static/js/2.a7b76d91.chunk.js.map",
+    "static/js/3.3b869dee.chunk.js": "/semantic-gdocs/static/js/3.3b869dee.chunk.js",
+    "static/js/3.3b869dee.chunk.js.map": "/semantic-gdocs/static/js/3.3b869dee.chunk.js.map",
+    "index.html": "/semantic-gdocs/index.html",
+    "static/js/2.a7b76d91.chunk.js.LICENSE.txt": "/semantic-gdocs/static/js/2.a7b76d91.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.69c54bfb.js",
+    "static/js/runtime-main.4029523c.js",
     "static/js/2.a7b76d91.chunk.js",
     "static/js/main.28de9b72.chunk.js"
   ]
