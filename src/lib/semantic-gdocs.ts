@@ -1,19 +1,19 @@
+import $ from "jquery";
+
 const STYLE_REGEX = /<style[^>]*>.*<\/style>/g;
-const $INPUT_BOX = $("textarea#input");
-const $OUTPUT_BOX = $("textarea#output");
 const $BODY = $("body");
-const $INPUT_ZONE = $("#input-zone");
 
 let inputText: string;
-let $styleTags: HTMLStyleElement[];
-let $input: HTMLInputElement;
+let $inputZone: JQuery = $("#input-zone");
+let $styleTags: JQuery<HTMLStyleElement>[];
+let $input: JQuery;
 
 const pullStyleTagsIntoDom = () => {
   // Get all the style tags in the document
   const styleTags = inputText.match(STYLE_REGEX);
 
   // Reset $styleTags;
-  $styleTags = [] as HTMLStyleElement[];
+  $styleTags = [] as JQuery<HTMLStyleElement>[];
 
   // Finish if no styles found.
   if (!styleTags) {
@@ -21,16 +21,18 @@ const pullStyleTagsIntoDom = () => {
   }
 
   // Append each style tag to the body of the page.
-  for (let i = 0; i < styleTags.length; i++) {
-    // Save a referance to the tag, so it can be removed later.
-    $styleTags.push($(styleTags[i]));
+  styleTags.forEach((tag) => {
+    const $tag = $<HTMLStyleElement>(tag);
+    // Save a reference to the tag, so it can be removed later.
+    $styleTags.push($tag);
     // Append it to the DOM.
-    $($styleTags[i]).appendTo($BODY);
-  }
+    $tag.appendTo($BODY);
+  });
 
   // Remove the style markup
   inputText = inputText.replace(STYLE_REGEX, "");
 };
+
 const stripHeadTag = () => {
   // Strip out header tag
   inputText = inputText
@@ -41,70 +43,89 @@ const stripHeadTag = () => {
     .replace(/<body[^>]*>/, "")
     .replace("</body>", "");
 };
+
 const putInputOntoDom = () => {
   // Wrap the input in a div, so find() and html() work on the actual input.
-  var $inputWrapper = $("<div></div>");
+  const $inputWrapper = $("<div></div>");
   $input = $inputWrapper.append($(inputText));
 
-  $INPUT_ZONE.append($input);
+  $inputZone = $('<div id="input-zone"></div>');
+  $inputZone.append($input);
+
+  $(document.body).append($inputZone);
 };
-const wrapElementWithStyle = ($element, property, style, wrapper) => {
+
+const wrapElementWithStyle = (
+  $element: JQuery,
+  property: string,
+  style: string,
+  wrapper: string
+) => {
   if ($element.css(property) === style) {
     $element.wrap(wrapper);
   }
 };
-const makeElementSemantic = (index, $element) => {
+
+const makeElementSemantic = ($element: JQuery) => {
   wrapElementWithStyle($element, "font-style", "italic", "<em></em>");
   wrapElementWithStyle($element, "font-weight", "bold", "<strong></strong>");
   wrapElementWithStyle($element, "font-weight", "700", "<strong></strong>");
   wrapElementWithStyle($element, "text-decoration", "line-through", "<s></s>");
   wrapElementWithStyle($element, "text-decoration", "underline", "<u></u>");
 };
+
 const makeElementsSemantic = () => {
   $input.find("*").each((index, element) => {
-    var $element = $(element);
+    const $element = $(element);
 
-    makeElementSemantic(index, $element);
+    makeElementSemantic($element);
     $element.removeAttr("class");
   });
 };
-const setOutputText = () => {
-  var outputText = $input
-    .html()
-    // remove the spans, since they should all be replaced by semantic tags
-    .replace(/<span[^>]*>/g, "")
-    .replace(/<\/span>/g, "");
 
-  $OUTPUT_BOX.val(outputText);
+const setOutputText = () => {
+  return (
+    $input
+      .html()
+      // remove the spans, since they should all be replaced by semantic tags
+      .replace(/<span[^>]*>/g, "")
+      .replace(/<\/span>/g, "")
+  );
 };
-const cleanUpDom = () => {
+
+const cleanUpStyles = () => {
   $.each($styleTags, function () {
     this.remove();
   });
 
   $input.remove();
+  $inputZone.remove();
 };
+
 const reset = () => {
-  inputText = "";
   $styleTags = [];
-  $input = undefined;
 };
+
 /** Process and clean incoming HTML. */
-export const processInput = (text: string) => {
-  inputText = text;
+export const processInput = (input: string): Promise<string> => {
+  inputText = input;
 
   if (!inputText) {
-    return;
+    return Promise.resolve("");
   }
 
   pullStyleTagsIntoDom();
   stripHeadTag();
   putInputOntoDom();
 
-  setTimeout(() => {
-    makeElementsSemantic();
-    setOutputText();
-    cleanUpDom();
-    reset();
-  }, 0);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      makeElementsSemantic();
+      const output = setOutputText();
+      cleanUpStyles();
+      reset();
+
+      resolve(output);
+    }, 0);
+  });
 };
