@@ -65,12 +65,13 @@ export const Inputs: React.FC = () => {
     <>
       <Box pb={3}>
         <DropButton
+          colorScheme="purple"
+          variant="outline"
           whenDragging="Drop your HTML file here!"
-          width="100%"
+          isFullWidth
           onChange={setInput}
         >
-          Drag HTML files here, click to open a file picker, or just paste HTML
-          below!
+          Drag HTML files here, or click to open a file picker
         </DropButton>
       </Box>
 
@@ -84,7 +85,12 @@ export const Inputs: React.FC = () => {
             </SmallButton>
           </Flex>
 
-          <InputTextArea value={input} name="input" onChange={handleChange} />
+          <InputTextArea
+            name="input"
+            placeholder="You can paste HTML here."
+            value={input}
+            onChange={handleChange}
+          />
         </Box>
 
         <Box>
@@ -115,6 +121,8 @@ export const Inputs: React.FC = () => {
           </Flex>
 
           <InputTextArea
+            placeholder="Your clean HTML will show up here."
+            name="output"
             value={output}
             onChange={handleChange}
             ref={outputRef}
