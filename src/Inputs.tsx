@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 import { processInput } from "./lib/html-cleaner";
+import { DropButton } from "./Dropzone";
 
 export const Inputs: React.FC = () => {
   const [input, setInput] = useState("");
@@ -62,11 +63,34 @@ export const Inputs: React.FC = () => {
 
   return (
     <>
+      <Box pb={3}>
+        <DropButton
+          whenDragging="Drop your HTML file here!"
+          width="100%"
+          onChange={setInput}
+        >
+          Drag HTML files here, click to open a file picker, or just paste HTML
+          below!
+        </DropButton>
+      </Box>
+
       <Grid as="section" templateColumns="repeat(2, 1fr)" gap={3}>
         <Box>
           <Flex justify="space-between" align="center" pb={2}>
+            <InputHeading>Input</InputHeading>
+
+            <SmallButton disabled={!input} onClick={() => setInput("")}>
+              Clear
+            </SmallButton>
+          </Flex>
+
+          <InputTextArea value={input} name="input" onChange={handleChange} />
+        </Box>
+
+        <Box>
+          <Flex justify="space-between" align="center" pb={2}>
             <HStack>
-              <InputHeading>Input</InputHeading>
+              <InputHeading>Clean Output</InputHeading>
 
               <Tooltip
                 label="If checked, remove any extra line breaks between paragraphs."
@@ -85,17 +109,6 @@ export const Inputs: React.FC = () => {
               </Tooltip>
             </HStack>
 
-            <SmallButton disabled={!input} onClick={() => setInput("")}>
-              Clear
-            </SmallButton>
-          </Flex>
-
-          <InputTextArea value={input} name="input" onChange={handleChange} />
-        </Box>
-
-        <Box>
-          <Flex justify="space-between" align="center" pb={2}>
-            <InputHeading>Clean Output</InputHeading>
             <SmallButton disabled={!output} onClick={handleCopy}>
               Copy
             </SmallButton>
