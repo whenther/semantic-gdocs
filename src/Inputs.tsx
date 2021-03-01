@@ -78,7 +78,7 @@ export const Inputs: React.FC = () => {
       <Grid as="section" templateColumns="repeat(2, 1fr)" gap={3}>
         <Box>
           <Flex justify="space-between" align="center" pb={2}>
-            <InputHeading>Input</InputHeading>
+            <InputHeading>Import</InputHeading>
 
             <SmallButton disabled={!input} onClick={() => setInput("")}>
               Clear

@@ -11,9 +11,10 @@ export const Docs: React.FC = () => {
 
         <Text>
           Google Docs can export a document as HTML. But if you want to import
-          that HTML somewhere else, you'll have problems. This cleans up the
+          that HTML somewhere else, you'll have problems because Docs exports
+          HTML in a way other tools may not understand. This site cleans up the
           Google Docs export, and gives you clean, semantic HTML that you can
-          import into a rich text editor.
+          import into rich text editors.
         </Text>
 
         <Text>

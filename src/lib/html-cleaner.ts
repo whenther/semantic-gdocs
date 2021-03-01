@@ -6,6 +6,11 @@ const EMPTY_P_REGEX = /<p><\/p>/g;
 const EMPTY_DIV_REGEX = /<div><\/div>/g;
 const BR_REGEX = /<br\s*\/?>/g;
 
+/**
+ * Renders the HTML in an iframe, including style tags.
+ * Then uses the styles from the css to replace <span>s with classes,
+ * with semantic formatting like <em> and <strong>.
+ */
 export class HtmlCleaner {
   inputText: string = "";
   $iframe: JQuery<HTMLIFrameElement> = $(
@@ -59,6 +64,10 @@ export class HtmlCleaner {
     this.$input.html(this.inputText);
   }
 
+  /**
+   * If an element has a specific CSS style,
+   * wrap it in a semantic tag that applies the same style.
+   */
   wrapElementWithStyle = (
     $element: JQuery,
     property: string,
