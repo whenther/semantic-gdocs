@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/semantic-gdocs/static/js/main.04ba842d.chunk.js",
-    "main.js.map": "/semantic-gdocs/static/js/main.04ba842d.chunk.js.map",
+    "main.js": "/semantic-gdocs/static/js/main.07b9326f.chunk.js",
+    "main.js.map": "/semantic-gdocs/static/js/main.07b9326f.chunk.js.map",
     "runtime-main.js": "/semantic-gdocs/static/js/runtime-main.4029523c.js",
     "runtime-main.js.map": "/semantic-gdocs/static/js/runtime-main.4029523c.js.map",
     "static/js/2.a7b76d91.chunk.js": "/semantic-gdocs/static/js/2.a7b76d91.chunk.js",
@@ -14,6 +14,6 @@
   "entrypoints": [
     "static/js/runtime-main.4029523c.js",
     "static/js/2.a7b76d91.chunk.js",
-    "static/js/main.04ba842d.chunk.js"
+    "static/js/main.07b9326f.chunk.js"
   ]
 }
