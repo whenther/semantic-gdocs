@@ -13,11 +13,11 @@
     "eject": "react-scripts eject",
     "lint": "npm-run-all -s lint:*",
     "lint:eslint": "eslint './**/*.{ts,tsx,js}'",
-    "lint:prettier": "prettier --check './**/*.{ts,tsx,js,html,md,json,css}'",
+    "lint:prettier": "prettier --check './**/*.{ts,tsx,js,html,md,json,css,yml}'",
     "lint:tsc": "tsc",
     "format": "npm-run-all -s format:*",
     "format:eslint": "eslint --fix './**/*.{ts,tsx,js}'",
-    "format:prettier": "prettier --write './**/*.{ts,tsx,js,html,md,json,css}'"
+    "format:prettier": "prettier --write './**/*.{ts,tsx,js,html,md,json,css,yml}'"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.5",
