@@ -10,10 +10,7 @@ export const Footer: React.FC = () => {
             Made by Will Ockelmann-Wagner
           </Link>
 
-          <Link
-            href="https://github.com/will-wow/semantic-gdocs/issues"
-            isExternal
-          >
+          <Link href="https://github.com/will-wow/gdocs-html/issues" isExternal>
             Issues?
           </Link>
         </Flex>

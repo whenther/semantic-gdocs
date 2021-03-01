@@ -1,8 +1,8 @@
 {
-  "name": "semantic-gdocs",
+  "name": "gdocs-html",
   "version": "2.0.0",
-  "repository": "git@github.com:will-wow/semantic-gdocs.git",
-  "homepage": "https://will-wow.github.io/semantic-gdocs",
+  "repository": "git@github.com:will-wow/gdocs-html.git",
+  "homepage": "https://gdocshtml.com",
   "author": "Will Ockelmann-Wagner <will@willwow.dev>",
   "license": "MIT",
   "private": false,
@@ -14,6 +14,7 @@
     "lint": "npm-run-all -s lint:*",
     "lint:eslint": "eslint './**/*.{ts,tsx,js}'",
     "lint:prettier": "prettier --check './**/*.{ts,tsx,js,html,md,json,css}'",
+    "lint:tsc": "tsc",
     "format": "npm-run-all -s format:*",
     "format:eslint": "eslint --fix './**/*.{ts,tsx,js}'",
     "format:prettier": "prettier --write './**/*.{ts,tsx,js,html,md,json,css}'"
